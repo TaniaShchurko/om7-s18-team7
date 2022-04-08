@@ -1,0 +1,33 @@
+{% extends 'authentication/layout.html' %}
+{% block content %}
+
+    {% if "all_users" in request.path %}
+        {% if all_users %}
+    <h3>Users sort : <a href="{% url 'all_users' 'first_name' %}" style="color:beige;">name up </a>
+        <a href="{% url 'all_users' '-first_name' %}" style="color:beige;"> name down</a></h3>
+    <h3><a href="{% url 'all_users' 'id' %}" style="color:beige;">id up </a>
+        <a href="{% url 'all_users' '-id' %}" style="color:beige;">id down</a></h3>
+            <h3> Users list  <a href="{% url 'add_user' %}" style="color:beige;">add user</a></h3>
+            {% for user in all_users %}
+                <div>
+                        <p><li>ID: {{user.id}}  <a href="{% url "edit_user" user.id %}" style="color:beige;">Edit</a></li></p>
+                        <p>Name: {{user.first_name}} {{user.last_name}}</p>
+                </div>
+            {% endfor %}
+
+
+        {% endif %}
+    {% else %}
+        {% if orders_by_user %}
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+
+            {% for order in orders_by_user %}
+                <div>
+                        <p>ID: {{order.book.id}}</p>
+                        <p>Name: {{order.book.name}}</p>
+                        <p>Description: {{order.book.description}} </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% block content %}
+
+    <form action="/author/editAuthor/{{id}}" method="post">
+    {% csrf_token %}
+        <h3>Name: {{ form.name }}</h3>
+        <h3>Surname: {{ form.surname }}</h3>
+        <h3>Patronymic: {{ form.patronymic }}</h3>
+    <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

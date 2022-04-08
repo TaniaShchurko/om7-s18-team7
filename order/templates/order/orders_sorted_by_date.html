@@ -1,0 +1,21 @@
+{% extends 'authentication/layout.html' %}
+{% block content %}
+    <h1>Orders list  <a href="{% url 'addOrder' %}">Add Order</a></h1>
+{% if orders %}
+
+            {% for  v  in orders %}
+                <div>
+                    <h3>Order <a href="{% url 'editOrder' v.id %}">Edit</a></h3>
+                    <p>User: {{ v.user.first_name }}  {{ v.user.last_name }}</p>
+                    <p>Book: {{ v.book.name }}</p>
+                    <p>Created at : {{ v.created_at }}</p>
+                    <p>Plated end at : {{ v.plated_end_at }}</p>
+                    <p>end at : {{ v.end_at }}</p>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <p>No orders</p>
+        {% endif %}
+
+{% endblock %}

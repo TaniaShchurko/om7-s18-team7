@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if users_not_in_time %}
+            {% for order in users_not_in_time %}
+                <div>
+                <h3>User</h3>
+                    <p>ID: {{order.id}}</p>
+                    <p>Name: {{order.user.first_name}} {{order.user.last_name}}</p>
+                    <p>Book: {{order.book.name}} {{order.book.description}}</p>
+                </div>
+            {% endfor %}
+            {% else %}
+        <h1>No authors</h1>
+        {% endif %}
+
+</body>
+</html>

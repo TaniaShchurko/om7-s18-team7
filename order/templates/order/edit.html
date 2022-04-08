@@ -1,0 +1,9 @@
+{% extends 'authentication/layout.html' %}
+{% block content %}
+    <form action="/order/editOrder/{{ id }}" method="post">
+    {% csrf_token %}
+        <h3>plated end at: {{ form.plated_end_at }}</h3>
+        <h3>end at: {{ form.end_at }}</h3>
+    <input type="submit" value="Submit">
+    </form>
+{% endblock %}

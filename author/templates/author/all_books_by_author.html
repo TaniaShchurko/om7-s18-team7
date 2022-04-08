@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if authors %}
+            {% for author in authors %}
+                <div>
+                <h3>Author</h3>
+                    <p>ID: {{author.id}}</p>
+                    <p>Name: {{author.name}}</p>
+                    <p>Surname: {{author.surname}}</p>
+                    <p>Patronymic: {{author.patronymic}}</p>
+                </div>
+            {% endfor %}
+            {% else %}
+        <h1>No authors</h1>
+        {% endif %}
+
+</body>
+</html>

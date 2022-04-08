@@ -1,0 +1,20 @@
+{% extends 'authentication/layout.html' %}
+{% block content %}
+<a href="{% url 'author:allauthors' %}" style="color:beige;">Authors</a>
+<h1>Books list</h1><a href="{% url 'addbook' %}" style="color:beige;">Add book</a>
+{% if books %}
+
+            {% for  v  in books %}
+                <div>
+                <h3>Book <a href="{% url 'edit_book' id=v.id %}" style="color:beige;">Edit</a> </h3>
+                    <p>Name: {{ v.name }}</p>
+                    <p>Description: {{ v.description }}</p>
+                    <p>Count: {{ v.count }}</p>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <p>No books</p>
+        {% endif %}
+
+{% endblock %}

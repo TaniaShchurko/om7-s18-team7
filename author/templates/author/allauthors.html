@@ -1,0 +1,19 @@
+{% extends 'authentication/layout.html' %}
+{% block content %}
+<h1>Authors list</h1><a href="{% url 'author:create_author' %}" style="color:beige;">Add author</a>
+{% if authors %}
+
+            {% for  v  in authors %}
+                <div>
+                <h3>Author <a href="{% url 'author:edit_author' id=v.id %}" style="color:beige;">Edit</a> </h3>
+                    <p>Name: {{ v.name }}</p>
+                    <p>Surname: {{ v.surname }}</p>
+                    <p>Patronymic: {{ v.patronymic }}</p>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <p>No authors</p>
+        {% endif %}
+
+{% endblock %}

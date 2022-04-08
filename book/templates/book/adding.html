@@ -1,0 +1,12 @@
+{% block content %}
+
+    <form action="/book/books/addbook" method="post">
+    {% csrf_token %}
+        <h3>Name: {{ form.name }}</h3>
+        <h3>Description: {{ form.description }}</h3>
+        <h3>Count: {{ form.count }}</h3>
+        <h3>Authors: {{ form.authors }}</h3>
+    <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
