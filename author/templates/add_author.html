@@ -1,0 +1,11 @@
+{% extends 'author_base.html '%}
+
+{% block page %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    
+    {{form.as_p}}
+    <button type="Submit">{{button_submit}}</button>
+
+</form>
+{% endblock page %}

@@ -1,0 +1,15 @@
+{% extends 'base.html '%}
+
+{% block content %}
+<p>Sort books by: 
+    Title( <a href="/book/sort_name_asc">Ascending</a> or <a href="/book/sort_name_desc">Descending</a>),
+    <a href="/book/sort_by_count/">Count</a>
+</p>
+<p>
+    <a href="/book/unordered">All unordered books</a>
+    <a href="/book/post">Add book</a>
+</p>
+<hr>
+{% block page %} 
+{% endblock page %}
+{% endblock content %}

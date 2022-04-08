@@ -1,0 +1,15 @@
+{% extends 'author_base.html '%}
+
+{% block page %}
+<div>
+    {% for author in authors %}
+        <div>
+            <p>{{author.surname}} {{author.name}} {{author.patronymic}}</p>
+            <p><a href="{% url 'update_author' author.id%}">
+                Update author
+            </a></p>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+{% endblock page %}

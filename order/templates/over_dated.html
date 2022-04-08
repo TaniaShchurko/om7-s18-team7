@@ -1,0 +1,28 @@
+{% extends 'order-base.html' %}
+
+{% block page %}
+
+{% if empty %}
+
+    <p>No users with doubts!</p>
+
+{% else %}
+    <p>Users with doubts: </p>
+    <hr>
+    {% for user, orders in users.items %}
+
+    <p>User: <a href="/order/user_{{user.id}}">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</a></p>
+    <p>Doubts: 
+        {% for order in orders %}
+
+        <p>Order (id {{order.id}})( Book: <a href="/book/{{order.book.id}}">{{order.book.name}}</a>)
+        Had to be handed out: {{order.plated_end_at}}</p>
+
+        {% endfor %}
+
+    </p>
+    <hr>
+    {% endfor %}
+
+{% endif %}
+{% endblock page %}

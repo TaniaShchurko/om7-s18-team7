@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>All orders by date of: <a href="/order/">creation</a> <a href="/order/sort_by_end">ending</a></p>
+<p><a href="/order/over_dated">Over dated orders</a></p>
+<p><a href="{% url 'order:add_order' %}">Add order</a></p>
+<hr>
+{% block page %}
+{% endblock page%}
+{% endblock content %}

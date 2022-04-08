@@ -1,0 +1,17 @@
+{% extends 'book_base.html' %}
+
+{% block page %}
+    {% if is_empty %}
+        <p>No books in library!</p>
+    {% else %}
+        <p>Unordered books:</p>
+        <hr>
+        {% for book in books %}
+            <div class="book">
+                <p><a href="/book/{{book.id}}">id {{book.id}}. {{book.name}} ( {{book.description}})</a></p>
+                <p>Only {{book.count}} books left</p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
