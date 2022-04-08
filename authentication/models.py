@@ -9,6 +9,15 @@ ROLE_CHOICES = (
     (1, 'admin'),
 )
 
+class UserManager(BaseUserManager):
+
+    def create_superuser(self, email, password):
+        
+        user = self.model(email=email, is_active=True, role=1,is_staff=True)
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
 class CustomUser(AbstractBaseUser):
     """
@@ -45,9 +54,10 @@ class CustomUser(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     role = models.IntegerField(default=0, choices=ROLE_CHOICES)
     is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    objects = BaseUserManager()
+    objects = UserManager()
 
     def __str__(self):
         """
@@ -64,6 +74,17 @@ class CustomUser(AbstractBaseUser):
         :return: class, id
         """
         return f'{self.__class__.__name__}(id={self.id})'
+    
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app):
+        return True
+
+
+    @property
+    def is_admin(self):
+        return self.role
 
     @staticmethod
     def get_by_id(user_id):
@@ -221,3 +242,7 @@ class CustomUser(AbstractBaseUser):
         returns str role name
         """
         return self.get_role_display()
+
+
+
+
