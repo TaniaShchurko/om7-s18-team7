@@ -2,6 +2,8 @@ from django.shortcuts import render
 from . models import Book
 from .forms import BookForm, EditBookForm
 from order.models import Order
+from rest_framework import generics
+from book.serializer import BookDetailSerializer, BookListSerializer
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -63,4 +65,14 @@ def edit(request,id):
 
     return render(request, 'book/edit.html', {'form': form})
 
+class BookCreateView(generics.CreateAPIView):
+    serializer_class = BookDetailSerializer
 
+
+class BookListView(generics.ListAPIView):
+    serializer_class = BookListSerializer
+    queryset = Book.objects.all()
+
+class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = BookDetailSerializer
+    queryset = Book.objects.all()

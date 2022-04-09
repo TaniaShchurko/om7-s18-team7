@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from author.models import *
 from django.http import HttpResponseRedirect
+from rest_framework import generics
+from author.serializer import AuthorDetailSerializer, AuthorListSerializer
 from .forms import AuthorForm, EditAuthorForm
 from book.models import *
 
@@ -25,7 +27,7 @@ def books_from_author(request, id):
     books = Book.get_all()
     authors_books = []
     for book in books:
-        if book.authors.all().filter(id=id):
+        if book.author.all().filter(id=id):
             authors_books.append(book)
     return render(request, 'book/allbooks.html', {'books': authors_books})
 
@@ -58,3 +60,14 @@ def editauthor(request, id):
 def authors(request):
     author = Author.objects.order_by('name')
     return render(request, 'author/allauthors.html', {'authors': author})
+
+class AuthorCreateView(generics.CreateAPIView):
+    serializer_class = AuthorDetailSerializer
+
+class AuthorListView(generics.ListAPIView):
+    serializer_class = AuthorListSerializer
+    queryset = Book.objects.all()
+
+class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AuthorDetailSerializer
+    queryset = Book.objects.all()
