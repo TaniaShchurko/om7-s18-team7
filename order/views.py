@@ -40,18 +40,18 @@ def db(request):
 
     book1 = Book(id=101, name="book1", description="description1", count=1)
     book1.save()
-    book1.authors.add(author1)
+    book1.author.add(author1)
     book1.save()
 
     book2 = Book(id=102, name="book2", description="description2")
     book2.save()
-    book2.authors.add(author2)
+    book2.author.add(author2)
     book2.save()
 
     book3 = Book(id=103, name="book3", description="description3")
     book3.save()
-    book3.authors.add(author1)
-    book3.authors.add(author2)
+    book3.author.add(author1)
+    book3.author.add(author2)
     book3.save()
 
     order1 = Order(id=101, user=user, book=book1, plated_end_at=TEST_DATE)

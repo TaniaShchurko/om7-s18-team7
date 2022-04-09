@@ -21,7 +21,7 @@ class Book(models.Model):
     name = models.CharField(blank=True, max_length=128)
     description = models.TextField(blank=True)
     count = models.IntegerField(default=10)
-    authors = models.ManyToManyField(Author, related_name='books')
+    author = models.ManyToManyField(Author, related_name='books')
 
     def __str__(self):
         """
@@ -85,7 +85,7 @@ class Book(models.Model):
             book.save()
             if authors is not None:
                 for author in authors:
-                    book.authors.add(author)
+                    book.author.add(author)
             book.save()
             return book
         except (IntegrityError, AttributeError, DataError):
@@ -110,7 +110,7 @@ class Book(models.Model):
             'name': self.name,
             'description': self.description,
             'count': self.count,
-            'authors': [author.id for author in self.authors.all()]
+            'authors': [author.id for author in self.author.all()]
         }
 
     def update(self, name=None, description=None, count=None):
@@ -141,7 +141,7 @@ class Book(models.Model):
         """
 
         for author in authors:
-            self.authors.add(author)
+            self.author.add(author)
         self.save()
 
     def remove_authors(self, authors):
@@ -151,7 +151,7 @@ class Book(models.Model):
         :return: None
         """
         for author in authors:
-            self.authors.remove(author)
+            self.author.remove(author)
         self.save()
 
     @staticmethod

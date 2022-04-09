@@ -38,18 +38,18 @@ class TestAuthorModel(TestCase):
 
             self.book1 = Book(id=101, name="book1", description="description1", count=1)
             self.book1.save()
-            self.book1.authors.add(self.author1)
+            self.book1.author.add(self.author1)
             self.book1.save()
 
             self.book2 = Book(id=102, name="book2", description="description2")
             self.book2.save()
-            self.book2.authors.add(self.author2)
+            self.book2.author.add(self.author2)
             self.book2.save()
 
             self.book3 = Book(id=103, name="book3", description="description3")
             self.book3.save()
-            self.book3.authors.add(self.author1)
-            self.book3.authors.add(self.author2)
+            self.book3.author.add(self.author1)
+            self.book3.author.add(self.author2)
             self.book3.save()
 
             self.order1 = Order(id=101, user=self.user, book=self.book1, plated_end_at=TEST_DATE)
