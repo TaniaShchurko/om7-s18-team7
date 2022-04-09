@@ -9,6 +9,8 @@ from .forms import OrderForm, EditOrderForm
 
 from django.shortcuts import render
 from . models import Order
+from rest_framework import generics
+from .serializers import OrderDetailSerializer, OrderListSerializer
 
 # Create your views here.
 
@@ -87,3 +89,14 @@ def editOrder(request, id):
         form = EditOrderForm()
 
     return render(request, 'order/edit.html', {'form': form, 'id': id})
+
+
+class OrderListView(generics.ListAPIView):
+    serializer_class = OrderListSerializer
+    queryset = Order.objects.all()
+
+
+class OrderCreateView(generics.CreateAPIView):
+    serializer_class = OrderDetailSerializer
+    queryset = Order.objects.all()
+    

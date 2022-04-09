@@ -2,9 +2,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from . models import CustomUser
 from order.models import *
+from order.serializers import OrderDetailSerializer
 from . forms import EditCustomUserForm,CustomUserForm
 from rest_framework import generics
 from .serializers import UserDetailSerializer, UserListSerializer
+from .permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
@@ -89,9 +91,16 @@ class UserCreateView(generics.CreateAPIView):
 
 class UserListView(generics.ListAPIView):
     serializer_class = UserListSerializer
-    queryset = CustomUser.get_all()
+    queryset = CustomUser.objects.all()
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserDetailSerializer
-    queryset = CustomUser.get_all()
+    queryset = CustomUser.objects.all()
+
+
+class UserOrderDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = OrderDetailSerializer
+    queryset = Order.objects.all()
+    permission_classes = (IsOwnerOrReadOnly,)
+
