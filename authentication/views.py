@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from . models import CustomUser
 from order.models import *
 from . forms import EditCustomUserForm,CustomUserForm
+from rest_framework import generics
+from .serializers import UserDetailSerializer, UserListSerializer
+
 # Create your views here.
 
 
@@ -78,3 +81,17 @@ def edit_user(request, id):
         form = EditCustomUserForm()
 
     return render(request, 'authentication/edit.html', {'form': form, 'id': id})
+
+
+class UserCreateView(generics.CreateAPIView):
+    serializer_class = UserDetailSerializer
+
+
+class UserListView(generics.ListAPIView):
+    serializer_class = UserListSerializer
+    queryset = CustomUser.get_all()
+
+
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = UserDetailSerializer
+    queryset = CustomUser.get_all()
