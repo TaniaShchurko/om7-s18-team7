@@ -8,10 +8,10 @@
 <a href="{% url 'main' %}" style="color: cornflowerblue"><h1>main page</h1></a>
 
 <ul>
-        <a href="{% url 'books' %}" style="color: cornflowerblue"><li>books list</li></a>
-        <a href="{%url 'books_name_desc'%}" style="color: cornflowerblue"><li><i class="far fa-address-card"></i>books list descending</li></a>
-        <a href="{% url 'books_count' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>books list by count</li></a>
-        <a href="{% url 'unordered' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>unordered books</li></a>
+        <a href="{% url 'book:books' %}" style="color: cornflowerblue"><li>books list</li></a>
+        <a href="{%url 'book:books_name_desc'%}" style="color: cornflowerblue"><li><i class="far fa-address-card"></i>books list descending</li></a>
+        <a href="{% url 'book:books_count' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>books list by count</li></a>
+        <a href="{% url 'book:unordered' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>unordered books</li></a>
         <a href="{% url 'orders' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>orders by date</li></a>
         <a href="{% url 'all_users' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>All users</li></a>
         <a href="{% url 'user_time' %}" style="color: cornflowerblue"><li><i class="fas fa-envelope-open"></i>Not in time</li></a>
