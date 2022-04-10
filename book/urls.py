@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+app_name='book'
 urlpatterns = [
     path('books/', views.books, name='books'),
     #path('<id>/', views.book_by_id, name='book_by_id'),
